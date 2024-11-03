@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import Loader from "./Loader/Loader.jsx";
-import ErrorMessage from "./ErrorMessage/ErrorMessage.jsx";
-import fetchImages from "../services/api.jsx";
-import SearchBar from "./SearchBar/SearchBar.jsx";
-import ImageGallery from "./ImageGallery/ImageGallery.jsx";
+import Loader from "../Loader/Loader.js";
+import ErrorMessage from "../ErrorMessage/ErrorMessage.js";
+import fetchImages from "../../services/api.js";
+import SearchBar from "../SearchBar/SearchBar.js";
+import ImageGallery from "../ImageGallery/ImageGallery.js";
 import "./App.css";
 import { Toaster } from "react-hot-toast";
-import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn.jsx";
-import ImageModal from "./ImageModal/ImageModal.jsx";
+import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn.js";
+import ImageModal from "../ImageModal/ImageModal.js";
 
 export default function App() {
   const [images, setImages] = useState([]); //is initialized as an empty array because it will store the data fetched from the API and then show it in our Result Section
