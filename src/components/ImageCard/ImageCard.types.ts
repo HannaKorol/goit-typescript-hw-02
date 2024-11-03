@@ -1,4 +1,4 @@
-import { Image } from "../App/";
+import { Image } from "../Api/Api.types";
 
 export interface ImageCardProps {
   image: Image;
