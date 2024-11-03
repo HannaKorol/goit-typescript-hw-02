@@ -1,39 +1,44 @@
-import { useEffect, useState } from "react";
-import Loader from "../Loader/Loader.js";
-import ErrorMessage from "../ErrorMessage/ErrorMessage.js";
-import fetchImages from "../../services/api.js";
-import SearchBar from "../SearchBar/SearchBar.js";
-import ImageGallery from "../ImageGallery/ImageGallery.js";
+import { useEffect, useRef, useState } from "react";
+import Loader from "../Loader/Loader";
+import fetchImages from "../Api/api";
+import SearchBar from "../SearchBar/SearchBar";
+import ImageGallery from "../ImageGallery/ImageGallery";
 import "./App.css";
 import { Toaster } from "react-hot-toast";
-import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn.js";
-import ImageModal from "../ImageModal/ImageModal.js";
+import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
+import ImageModal from "../ImageModal/ImageModal";
+import { Image } from "../Api/Api.types";
 
-export default function App() {
-  const [images, setImages] = useState([]); //is initialized as an empty array because it will store the data fetched from the API and then show it in our Result Section
-  const [loading, setLoading] = useState(false); // lectioon 1 (50:28)
-  const [error, setError] = useState(false);
-  const [page, setPage] = useState(1);
-  const [query, setQuery] = useState(""); //it will be used to store the input from the search bar (and that is also a string).
-  const [selectedImage, setSelectedImage] = useState(null); // State for selected image
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+const App: React.FC = () => {
+  const [images, setImages] = useState<Image[]>([]); //is initialized as an empty array because it will store the data fetched from the API and then show it in our Result Section
+  const [loading, setLoading] = useState<boolean>(false); // lectioon 1 (50:28)
+  const [error, setError] = useState<string | null>(null);
+  const [page, setPage] = useState<number>(1);
+  const [query, setQuery] = useState<string>(""); //it will be used to store the input from the search bar (and that is also a string).
+  const [selectedImage, setSelectedImage] = useState<Image | null>(null); // State for selected image
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   //1)HTTP-запити можна виконувати як за подією(при кліку на елементі чи відправці форми) або при монтажі компонента. 2-варіант - використовується ефект - оскільки компонент є в ДОМ і готовий оновлювати стан. Але Оскільки тепер користувач сам вводить рядок для пошуку статей, нам не потрібний ефект.
   //вся логіка запиту і обробки службового стейту (isLoading, error) виконуєится в useEffect з залежностями [query, page]
   //Використовуємо UseEffect тому що треба робити запит після рендерингу всього компонента.
   //Функція буде викликана кожен раз при зміні номера сторінки:
+
+  const loadMoreRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (!query) return;
 
     const getData = async () => {
       try {
-        setError(false); // при новому запиті помилка зникає
+        setError(null); // при новому запиті помилка зникає
         setLoading(true);
         const data = await fetchImages(page, query);
         setLoading(false);
         setImages((prev) => [...prev, ...data]);
       } catch {
-        setError(true);
+        setError("Failed to load images. Please try again.");
       } finally {
         setLoading(false);
       }
@@ -47,13 +52,13 @@ export default function App() {
   };
 
   //Скидаємо збереженні сторінки і запити пошуку:
-  const handleSetQuery = (topic) => {
+  const handleSetQuery = (topic: string) => {
     setQuery(topic);
     setImages([]);
     setPage(1); //скидання сторінок якщо ми шукаємо по іншій темі пошуку
   };
 
-  const handleImageClick = (imageUrl) => {
+  const handleImageClick = (imageUrl: Image) => {
     setSelectedImage(imageUrl); // Update the selected image
     setIsModalOpen(true); // Open the modal
   };
@@ -68,7 +73,7 @@ export default function App() {
       <SearchBar setQuery={handleSetQuery} />
       <Toaster position="top-right" reverseOrder={false} />
       {loading && <Loader />}
-      {error && <ErrorMessage />}
+      {error && <ErrorMessage message={error} />}
       {images.length > 0 && (
         <ImageGallery images={images} onImageClick={handleImageClick} />
       )}
@@ -84,7 +89,9 @@ export default function App() {
       )}
     </div>
   );
-}
+};
+
+export default App;
 
 // Відображення номера сторінки для вибору !! Корисна відмальовка
 /*  <div>

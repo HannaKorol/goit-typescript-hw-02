@@ -2,7 +2,7 @@
 import React from "react";
 import s from "./LoadMoreBtn.module.css"
 
-const LoadMoreBtn = ({ onClick }) => {
+const LoadMoreBtn: React.FC<LoadMoreBtnProps> = ({ onClick }) => {
   return (
     <button
       onClick={onClick} className={s.button}

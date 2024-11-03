@@ -1,8 +1,9 @@
-import React from 'react'
-import s from "./ErrorMessage.module.css"
+import React from "react";
+import s from "./ErrorMessage.module.css";
+import { ErrorMessageProps } from "formik";
 
-const ErrorMessage = ({message}) => {
-    return <p className={s.error}>Something went wrong! Try again!</p>;
+const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => {
+  return <p className={s.error}>{message}</p>;
 };
 
 export default ErrorMessage;

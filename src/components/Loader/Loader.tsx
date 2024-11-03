@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Grid } from "react-loader-spinner";
 import s from "./Loader.module.css";
 
-const Loader = () => {
+const Loader: React.FC = () => {
+  const loaderRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (loaderRef.current) {
+      loaderRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
+
   return (
     <div className={s.loader}>
       <Grid

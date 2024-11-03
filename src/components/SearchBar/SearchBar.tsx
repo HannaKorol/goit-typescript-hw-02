@@ -3,8 +3,10 @@
 import { Field, Form, Formik } from "formik";
 import toast from "react-hot-toast";
 import s from "./SearchBar.module.css"
+import { SearchBarProps } from "./SearchBox.types";
 
-const SearchBar = ({ setQuery }) => {
+
+const SearchBar: React.FC<SearchBarProps> = ({ setQuery }) => {
   const initialValues = {
     query: "",
   };
