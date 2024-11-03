@@ -1,0 +1,42 @@
+s .modal {
+  width: 80%;
+  height: 80%;
+  background-color: white;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  border-radius: 10px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modalContainer {
+  display: flex;
+  flex-direction:row;
+  align-items:flex-start;
+  justify-content: center;
+  margin: 10px auto;
+  gap: 10px;
+}
+
+.largeImage {
+width: 1280px;
+height: 920px;
+}
+
+.closeButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ed2e04;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

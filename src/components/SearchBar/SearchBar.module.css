@@ -1,0 +1,36 @@
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: #eee;
+  border: 1px solid #bdbdbd;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  border-radius: .25rem;
+  transition: background-color .15s ease-in-out;
+}
+
+.button:hover {
+  background-color: #bdbdbd;
+}
+
+.input {
+      padding: .375rem .75rem;
+        border: 1px solid #bdbdbd;
+}
+
+.searchContainer {
+  margin: 0px auto;
+  padding: 20px;
+}
+
