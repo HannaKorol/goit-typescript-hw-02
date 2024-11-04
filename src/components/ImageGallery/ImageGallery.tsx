@@ -1,7 +1,7 @@
 import ImageCard from "../ImageCard/ImageCard";
-import s from "./ImageGallery.module.css"
+import React from "react";
+import s from "./ImageGallery.module.css";
 import { ImageGalleryProps } from "./ImageGallery.types";
-
 
 const ImageGallery: React.FC<ImageGalleryProps> = ({
   images,
@@ -13,7 +13,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
         <li key={image.id}>
           <ImageCard
             image={image}
-            onClick={() => onImageClick(image.urls.full)}
+            onClick={() => onImageClick(image)} // Передаем объект image
           />
         </li>
       ))}
@@ -22,4 +22,3 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
 };
 
 export default ImageGallery;
-

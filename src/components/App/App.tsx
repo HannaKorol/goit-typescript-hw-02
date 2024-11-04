@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import React from "react";
 import Loader from "../Loader/Loader";
 import fetchImages from "../Api/api";
 import SearchBar from "../SearchBar/SearchBar";
@@ -8,7 +9,7 @@ import { Toaster } from "react-hot-toast";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
 import { Image } from "../Api/Api.types";
-import { ErrorMessage } from "formik";
+import {ErrorMessage} from "../ErrorMessage/ErrorMessage"
 
 
 
@@ -36,7 +37,6 @@ const App: React.FC = () => {
         setError(null); // при новому запиті помилка зникає
         setLoading(true);
         const data = await fetchImages(page, query);
-        setLoading(false);
         setImages((prev) => [...prev, ...data.results]);
       } catch {
         setError("Failed to load images. Please try again.");
@@ -59,8 +59,8 @@ const App: React.FC = () => {
     setPage(1); //скидання сторінок якщо ми шукаємо по іншій темі пошуку
   };
 
-  const handleImageClick = (imageUrl: Image) => {
-    setSelectedImage(imageUrl); // Update the selected image
+  const handleImageClick = (image: Image) => {
+    setSelectedImage(image); // Update the selected image
     setIsModalOpen(true); // Open the modal
   };
 
@@ -83,7 +83,7 @@ const App: React.FC = () => {
       )}
       {isModalOpen && (
         <ImageModal
-          imageUrl={selectedImage}
+          imageUrl={selectedImage?.urls.full}
           onRequestClose={closeModal}
           isOpen={isModalOpen}
         />
