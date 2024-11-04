@@ -9,9 +9,7 @@ export interface Image {
 }
 
 export interface ApiResponse {
-    client_id: string;
-    page: number;
-  query: string;
   results: Image[];
-  per_page: number;
+  total: number;
+  total_pages: number;
 }

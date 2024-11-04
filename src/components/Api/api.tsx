@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ApiResponse } from "./Api.types";
+import { ApiResponse, Image } from "./Api.types";
 
 const fetchImages = async (page:number = 1, query:string = ""): Promise<ApiResponse> => {
   const { data } = await axios.get<ApiResponse>(
@@ -13,7 +13,7 @@ const fetchImages = async (page:number = 1, query:string = ""): Promise<ApiRespo
       },
     }
   );
-  return data.results; // Just return the data here
+  return data; // Just return the data here
 };
 
 export default fetchImages;
