@@ -1,7 +1,7 @@
 import { Image } from "../Api/Api.types";
 
 export interface ImageModalProps {
-  imageUrl: Image | null;
+  imageUrl: string | undefined;
   onRequestClose: () => void;
   isOpen: boolean;
 }
