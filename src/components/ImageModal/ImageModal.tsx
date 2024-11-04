@@ -18,12 +18,12 @@ const ImageModal: React.FC<ImageModalProps> = ({
       overlayClassName={s.overlay}
     >
       <div className={s.modalContainer}>
-        <button onClick={onRequestClose} className={s.closeButton}>
-          Close
-        </button>
         {imageUrl && ( // Check if imageUrl is truthy
           <img src={imageUrl} alt="Large photo" className={s.largeImage} />
         )}
+        <button onClick={onRequestClose} className={s.closeButton}>
+          Close
+        </button>
       </div>
     </Modal>
   );
