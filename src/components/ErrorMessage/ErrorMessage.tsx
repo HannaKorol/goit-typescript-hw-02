@@ -1,8 +1,8 @@
 import React from "react";
 import s from "./ErrorMessage.module.css";
-import { ErrorMessageProps } from "formik";
+import { ErrorMessageProps } from "./ErrorMessage.types";
 
-const ErrorMessage: React.FC<ErrorMessageProps> = ({ message:string }) => {
+const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => {
   return <p className={s.error}>{message}</p>;
 };
 

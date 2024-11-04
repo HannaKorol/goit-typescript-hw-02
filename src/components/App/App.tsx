@@ -37,7 +37,7 @@ const App: React.FC = () => {
         setLoading(true);
         const data = await fetchImages(page, query);
         setLoading(false);
-        setImages((prev) => [...prev, ...data]);
+        setImages((prev) => [...prev, ...data.results]);
       } catch {
         setError("Failed to load images. Please try again.");
       } finally {

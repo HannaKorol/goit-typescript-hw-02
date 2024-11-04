@@ -1,3 +1,3 @@
 export interface SearchBarProps {
-  onSubmit: (setQuery: string) => void;
+  setQuery: (topic: string) => void;
 }
